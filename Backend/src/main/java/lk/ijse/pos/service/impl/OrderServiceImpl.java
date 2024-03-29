@@ -75,4 +75,19 @@ public class OrderServiceImpl implements OrderService {
         }
         return orderDetailDTOS;
     }
+
+    @Override
+    public Integer getOrderCount() {
+        return orderRepo.getOrderCount();
+    }
+
+    @Override
+    public Integer getOrderDetailCount() {
+        return orderRepo.orderDetailCount();
+    }
+
+    @Override
+    public Double geyIncome() {
+        return orderRepo.getIncome();
+    }
 }

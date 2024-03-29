@@ -4,14 +4,13 @@ function setStatus() {
         url: baseUrl,
         dataType: 'json',
         success: function (res) {
+            console.log(res);
+                $('#income').text(res.income);
+                $('#totOfCustomers').text(res.customerCount);
+                $('#totOfItems').text(res.itemCount);
+                $('#totOfOrders').text(res.orderCount);
+                $('#finishOrders').text(res.orderDetailCount);
 
-            for (const re of res.data) {
-                $('#income').text(re.income);
-                $('#totOfCustomers').text(re.cusCount);
-                $('#totOfItems').text(re.itemCount);
-                $('#totOfOrders').text(re.orderCount);
-                $('#finishOrders').text(re.orderDetailCount);
-            }
         },
         error: function (err) {
             // let error = JSON.parse(err.responseText);

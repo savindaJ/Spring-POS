@@ -20,4 +20,13 @@ public interface OrderRepo extends JpaRepository<Orders, String> {
             "FROM orders o " +
             "JOIN order_detail od ON o.order_id = od.order_id", nativeQuery = true)
     List<OrderDetailProjection> getAllOrderDetails();
+
+    @Query(value = "SELECT COUNT(*) FROM orders", nativeQuery = true)
+    Integer getOrderCount();
+
+    @Query(value = "SELECT COUNT(*) FROM order_detail", nativeQuery = true)
+    Integer orderDetailCount();
+
+    @Query(value = "select sum(od.order_quantity * i.item_price) from order_detail od JOIN item i ON od.item_code = i.item_code", nativeQuery = true)
+    Double getIncome();
 }

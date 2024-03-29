@@ -9,5 +9,5 @@ import java.util.Map;
  * @since : 0.1.0
  **/
 public interface HomeService {
-    Map<String,Integer> getStatus();
+    Map<String,Number> getStatus();
 }

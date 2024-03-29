@@ -28,7 +28,7 @@ public class HomeController {
     }
 
     @GetMapping
-    public ResponseEntity<Map<String,Integer>> home(){
+    public ResponseEntity<Map<String,Number>> home(){
         return ResponseEntity.ok(homeService.getStatus());
     }
 }

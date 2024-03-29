@@ -1,11 +1,11 @@
 function loadAllOrderDetails() {
     $.ajax({
-        url: baseUrl + 'orderDetail',
+        url: baseUrl + 'order/orderdetails',
         type: 'get',
         dataType: 'json',
         success: function (res) {
             $('#order-detail-body').empty();
-            for (const detail of res.data) {
+            for (const detail of res) {
 
                 $('#order-detail-body').append(`<tr>
                 <td>${detail.orderId}</td>

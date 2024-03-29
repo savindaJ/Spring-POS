@@ -15,4 +15,10 @@ public interface OrderService {
     boolean saveOrder(OrderDTO orderDTO);
 
     List<OrderDetailDTO> getAllOrders();
+
+    Integer getOrderCount();
+
+    Integer getOrderDetailCount();
+
+    Double geyIncome();
 }
