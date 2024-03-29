@@ -36,4 +36,12 @@ public class CustomerServiceImpl implements CustomerService {
         List<Customer> all = customerRepo.findAll();
         return modelMapper.map(all, List.class);
     }
+
+    @Override
+    public boolean deleteCustomer(String id) {
+        Customer referenceById = customerRepo.getReferenceById(id);
+        System.out.println(referenceById);
+        customerRepo.deleteById(id);
+        return true;
+    }
 }

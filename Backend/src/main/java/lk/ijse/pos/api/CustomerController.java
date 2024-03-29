@@ -39,4 +39,13 @@ public class CustomerController {
         logger.info(response.toString());
         return ResponseEntity.created(null).body(response);
     }
+
+    @DeleteMapping
+    public ResponseEntity<Map<String,String>> deleteCustomer(@RequestParam("id") String id){
+        Map<String,String> response = new LinkedHashMap<>();
+        if (!customerService.deleteCustomer(id)) throw new RuntimeException("Failed to delete the customer");
+        response.put("message","Customer deleted successfully");
+        logger.info(response.toString());
+        return ResponseEntity.ok(response);
+    }
 }
