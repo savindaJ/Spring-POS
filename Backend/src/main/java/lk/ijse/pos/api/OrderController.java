@@ -2,6 +2,8 @@ package lk.ijse.pos.api;
 
 import jakarta.validation.Valid;
 import lk.ijse.pos.dto.OrderDTO;
+import lk.ijse.pos.dto.OrderDetailDTO;
+import lk.ijse.pos.projection.OrderDetailProjection;
 import lk.ijse.pos.service.OrderService;
 import lk.ijse.pos.util.Generator;
 import org.springframework.http.MediaType;
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -43,4 +46,9 @@ public class OrderController {
         return ResponseEntity.created(null).body(response);
     }
 
+
+    @GetMapping("/orderdetails")
+    public List<OrderDetailDTO> getOrderDetails(){
+        return orderService.getAllOrders();
+    }
 }

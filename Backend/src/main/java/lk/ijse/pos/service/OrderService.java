@@ -1,6 +1,10 @@
 package lk.ijse.pos.service;
 
 import lk.ijse.pos.dto.OrderDTO;
+import lk.ijse.pos.dto.OrderDetailDTO;
+import lk.ijse.pos.projection.OrderDetailProjection;
+
+import java.util.List;
 
 /**
  * @author : savindaJ
@@ -9,4 +13,6 @@ import lk.ijse.pos.dto.OrderDTO;
  **/
 public interface OrderService {
     boolean saveOrder(OrderDTO orderDTO);
+
+    List<OrderDetailDTO> getAllOrders();
 }

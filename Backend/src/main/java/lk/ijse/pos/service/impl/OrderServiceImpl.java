@@ -4,11 +4,14 @@ import jakarta.transaction.Transactional;
 import lk.ijse.pos.dto.CustomerDTO;
 import lk.ijse.pos.dto.ItemDTO;
 import lk.ijse.pos.dto.OrderDTO;
+import lk.ijse.pos.dto.OrderDetailDTO;
 import lk.ijse.pos.embedded.OrderDetailPK;
 import lk.ijse.pos.entity.Customer;
 import lk.ijse.pos.entity.Item;
 import lk.ijse.pos.entity.OrderDetail;
 import lk.ijse.pos.entity.Orders;
+import lk.ijse.pos.projection.OrderDetailProjection;
+import lk.ijse.pos.projection.impl.OrderDetailProjectionImpl;
 import lk.ijse.pos.repo.OrderRepo;
 import lk.ijse.pos.service.CustomerService;
 import lk.ijse.pos.service.ItemService;
@@ -16,7 +19,10 @@ import lk.ijse.pos.service.OrderService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -55,5 +61,18 @@ public class OrderServiceImpl implements OrderService {
         });
         Orders save = orderRepo.save(new Orders(orderDTO.getOrderId(), modelMapper.map(customerDTO, Customer.class), detailList));
         return save != null;
+    }
+
+    @Override
+    public List<OrderDetailDTO> getAllOrders() {
+        List<OrderDetailDTO> orderDetailDTOS = new ArrayList<>();
+        for (OrderDetailProjection allOrderDetail : orderRepo.getAllOrderDetails()) {
+            Date date = new Date(allOrderDetail.getOrderDate().getTime());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String formattedDate = dateFormat.format(date);
+            System.out.println(formattedDate);
+            orderDetailDTOS.add(new OrderDetailDTO(allOrderDetail.getOrderId(), allOrderDetail.getCustomerId(), allOrderDetail.getItemCode(), allOrderDetail.getOrderQuantity(), formattedDate));
+        }
+        return orderDetailDTOS;
     }
 }
