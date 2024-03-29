@@ -39,12 +39,19 @@ public class CustomerController {
         logger.info(response.toString());
         return ResponseEntity.created(null).body(response);
     }
-
     @DeleteMapping
     public ResponseEntity<Map<String,String>> deleteCustomer(@RequestParam("id") String id){
         Map<String,String> response = new LinkedHashMap<>();
         if (!customerService.deleteCustomer(id)) throw new RuntimeException("Failed to delete the customer");
         response.put("message","Customer deleted successfully");
+        logger.info(response.toString());
+        return ResponseEntity.ok(response);
+    }
+    @PutMapping
+    public ResponseEntity<Map<String,String>> updateCustomer(@RequestBody @Valid CustomerDTO customerDTO){
+        Map<String,String> response = new LinkedHashMap<>();
+        if (!customerService.updateCustomer(customerDTO)) throw new RuntimeException("Failed to update the customer");
+        response.put("message","Customer updated successfully");
         logger.info(response.toString());
         return ResponseEntity.ok(response);
     }

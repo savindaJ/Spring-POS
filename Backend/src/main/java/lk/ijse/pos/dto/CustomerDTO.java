@@ -17,7 +17,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerDTO implements SuperDTO{
-    @Null(message = "Customer ID is mandatory")
     private String cusId;
     @NotBlank(message = "Name is mandatory")
     @Pattern(regexp = "^[A-Za-z ]*$",message = "Name is invalid")

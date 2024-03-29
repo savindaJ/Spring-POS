@@ -46,4 +46,13 @@ public class CustomerServiceImpl implements CustomerService {
         customerRepo.deleteById(id);
         return true;
     }
+
+    @Override
+    public boolean updateCustomer(CustomerDTO customerDTO) {
+        if (!customerRepo.existsById(customerDTO.getCusId())) {
+            throw new CustomerNotFoundException("No customer exist for given id...!");
+        }
+        Customer save = customerRepo.save(modelMapper.map(customerDTO, Customer.class));
+        return save != null;
+    }
 }
