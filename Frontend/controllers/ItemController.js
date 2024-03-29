@@ -15,13 +15,13 @@ function updateItem() {
         const json = {
             itemCode: id,
             description: description,
-            price: parseFloat(unitPrice),
-            quantity: parseInt(qty)
+            unitPrice: unitPrice,
+            qty: qty
         }
         $.ajax({
             url: baseUrl + "item",
             type: "put",
-            dataType: "json",
+            contentType: "application/json",
             data: JSON.stringify(json),
             success: function (res) {
                 getAllItem();
@@ -61,12 +61,12 @@ function saveItem() {
         const item = {
             itemCode: $('#txtItemId').val(),
             description: $('#txtItemdec').val(),
-            price: parseFloat($('#txtItemQty').val()),
-            quantity: parseInt($('#txtItemUnitPrice').val())
+            qty: $('#txtItemQty').val(),
+            unitPrice: $('#txtItemUnitPrice').val()
         }
 
         $.ajax({
-            url: baseUrl + "item", type: 'post', dataType: 'json',
+            url: baseUrl + "item", type: 'post', contentType: 'application/json',
             data: JSON.stringify(item)
             , success: function (res) {
                 const Toast = Swal.mixin({
@@ -121,17 +121,17 @@ function getAllItem() {
 
     $.ajax({
         url: baseUrl + "item", type: 'get', dataType: 'json', success: function (res) {
-            allItem = res.data;
-            itemDB = res.data;
+            allItem = res;
+            itemDB = res;
             setItemIds(itemDB);
             $('#Item-body').empty();
             setStatus();
-            for (const item of res.data) {
+            for (const item of res) {
                 $(`#Item-body`).append(`<tr>
                                 <td>${item.itemCode}</td>
                                 <td>${item.description}</td>
-                                <td>${item.price}</td>
-                                <td>${item.quantity}</td>
+                                <td>${item.unitPrice}</td>
+                                <td>${item.qty}</td>
                                 <td><button type="button" class="btn btn-primary btn-sm me-2 btnUpdate" data-bs-toggle="modal"
                                         data-bs-target="#update-model">
                                     Edit

@@ -28,7 +28,7 @@ function clearUpdateTxt() {
     $('#upItemId').focus();
 }
 
-$('#txtItemId,#txtItemdec,#txtItemUnitPrice,#txtItemQty').on("keydown keyup", function (e) {
+$('#txtItemdec,#txtItemUnitPrice,#txtItemQty').on("keydown keyup", function (e) {
     //get the index number of data input fields indexNo
     let indexNo = i_validity.indexOf(i_validity.find((c) => c.field.attr("id") == e.target.id));
 
@@ -58,7 +58,7 @@ $('#txtItemId,#txtItemdec,#txtItemUnitPrice,#txtItemQty').on("keydown keyup", fu
     }
 });
 
-$('#upItemId,#upItemdesc,#upUnitPrice,#upQty').on("keydown keyup", function (e) {
+$('#upItemdesc,#upUnitPrice,#upQty').on("keydown keyup", function (e) {
     //get the index number of data input fields indexNo
     let indexNo = update_validity.indexOf(update_validity.find((c) => c.field.attr("id") == e.target.id));
 
@@ -128,6 +128,6 @@ function checkAllItem() {
     }
     return true;
 }
-
+$('#upItemId').prop("disabled", true);
 $("#btnSaveItem").prop("disabled", true);
 $("#btnUpdateItem").prop("disabled", true);

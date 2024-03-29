@@ -14,8 +14,8 @@ function setStatus() {
             }
         },
         error: function (err) {
-            let error = JSON.parse(err.responseText);
-            console.log(error.message);
+            // let error = JSON.parse(err.responseText);
+            console.log(err);
         }
     })
 

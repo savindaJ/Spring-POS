@@ -160,8 +160,8 @@ $('#selItemId').on('change', function () {
     for (const item of items) {
         if (item.itemCode === id) {
             $('#orderItemDesc').val(item.description);
-            $('#orderItemPrice').val(item.price);
-            $('#orderQty').val(item.quantity);
+            $('#orderItemPrice').val(item.unitPrice);
+            $('#orderQty').val(item.qty);
         }
     }
     $('#getQty').focus();
