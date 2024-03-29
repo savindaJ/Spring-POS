@@ -4,6 +4,7 @@ import lk.ijse.pos.dto.CustomerDTO;
 import lk.ijse.pos.entity.Customer;
 import lk.ijse.pos.repo.CustomerRepo;
 import lk.ijse.pos.service.CustomerService;
+import lk.ijse.pos.service.exception.CustomerNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -39,8 +40,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public boolean deleteCustomer(String id) {
-        Customer referenceById = customerRepo.getReferenceById(id);
-        System.out.println(referenceById);
+        if (!customerRepo.existsById(id)) {
+            throw new CustomerNotFoundException("No customer exist for given id...!");
+        }
         customerRepo.deleteById(id);
         return true;
     }

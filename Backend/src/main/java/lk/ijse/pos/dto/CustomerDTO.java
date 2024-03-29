@@ -23,6 +23,7 @@ public class CustomerDTO implements SuperDTO{
     @Pattern(regexp = "^[A-Za-z ]*$",message = "Name is invalid")
     private String name;
     @NotBlank(message = "Address is mandatory")
+    @Pattern(regexp = "^[A-Za-z0-9, ]*$",message = "Address is invalid")
     private String address;
     @NotNull(message = "Salary is mandatory")
     private Double salary;
