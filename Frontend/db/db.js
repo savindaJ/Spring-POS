@@ -1,2 +1,2 @@
-let baseUrl = "http://localhost:8080/app/";
+let baseUrl = "http://localhost:8080/pos/";
 let itemDB;

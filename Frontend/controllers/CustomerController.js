@@ -3,7 +3,7 @@ $('#save-customer').on('click', function () {
 
     const customer = {
         cusId: $('#customer-gmail').val(),
-        cusName: $('#customer-name').val(),
+        name: $('#customer-name').val(),
         address: $('#customer-address').val(),
         salary: $('#customer-tp').val()
     }
@@ -11,7 +11,7 @@ $('#save-customer').on('click', function () {
     $.ajax({
         url: baseUrl + "customer",
         type: "post",
-        dataType: "json",
+        contentType: "application/json",
         data: JSON.stringify(customer),
         success: function (res) {
             getAll();
@@ -33,8 +33,7 @@ $('#save-customer').on('click', function () {
             });
         },
         error: function (err) {
-            let parse = JSON.parse(err.responseText);
-            alert(parse.message);
+            console.log(err)
         }
     });
 });
@@ -54,7 +53,7 @@ $('#txt-customer-search').on('keyup', function () {
                 if (customer.cusId.includes(search)) {
                     $(`#body`).append(`<tr>
                                 <td>${customer.cusId}</td>
-                                <td>${customer.cusName}</td>
+                                <td>${customer.name}</td>
                                 <td>${customer.address}</td>
                                 <td>${customer.salary}</td>
                                 <td><button type="button" class="btn btn-primary btn-sm me-2 btnEdit" data-bs-toggle="modal"
@@ -106,13 +105,15 @@ function getAll() {
         dataType: "json",
         success: function (resp) {
             $(`#body`).empty();
-            allCustomer = resp.data;
-            loadCusIds(resp.data);
+            allCustomer = resp;
+            console.log(resp)
+            loadCusIds(resp);
             setStatus();
-            for (const customer of resp.data) {
+            for (const customer of resp) {
+
                 $(`#body`).append(`<tr>
                                 <td>${customer.cusId}</td>
-                                <td>${customer.cusName}</td>
+                                <td>${customer.name}</td>
                                 <td>${customer.address}</td>
                                 <td>${customer.salary}</td>
                                 <td><button type="button" class="btn btn-primary btn-sm me-2 btnEdit" data-bs-toggle="modal"
@@ -187,16 +188,16 @@ $('#getAllCustomer').on('click', function () {
 $('#updateCustomer').on('click', function () {
     const customer = {
         cusId: $(`#upCID`).val(),
-        cusName: $(`#upCName`).val(),
+        name: $(`#upCName`).val(),
         address: $(`#upCAddress`).val(),
-        salary: parseInt($(`#upCTp`).val())
+        salary: $(`#upCTp`).val()
     }
 
 
     $.ajax({
         url: baseUrl + "customer",
         type: "put",
-        dataType: "json",
+        contentType: "application/json",
         data: JSON.stringify(customer),
         success: function (res) {
             // alert(res.message)
@@ -219,7 +220,7 @@ $('#updateCustomer').on('click', function () {
             clearUpdateFiald();
         },
         error: function (err) {
-            alert(err.responseText);
+            console.log(err)
         }
     })
 });

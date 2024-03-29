@@ -19,6 +19,7 @@ import java.util.logging.Logger;
  * @since : 0.1.0
  **/
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/customer")
 public class CustomerController {
     private final Logger logger = Logger.getLogger(this.getClass().getName());
