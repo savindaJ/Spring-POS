@@ -25,30 +25,44 @@ import java.util.logging.Logger;
 @RequestMapping("/order")
 public class OrderController {
 
+    /**
+     * Logger
+     */
     private Logger logger = Logger.getLogger(this.getClass().getName());
 
     private final OrderService orderService;
 
+    /**
+     * @param orderService OrderService
+     */
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
+    /**
+     * @return ResponseEntity<String>
+     */
     @GetMapping("/nextId")
-    public ResponseEntity<?> getNextOrderID(){
+    public ResponseEntity<?> getNextOrderID() {
         return ResponseEntity.ok(Generator.generateOrderID());
     }
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String,String>> saveCustomer(@RequestBody @Valid OrderDTO orderDTO){
+    /**
+     * @param orderDTO OrderDTO
+     * @return ResponseEntity<Map < String, String>>
+     */
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String, String>> saveCustomer(@RequestBody @Valid OrderDTO orderDTO) {
 
-        Map<String,String> response = new LinkedHashMap<>();
+        Map<String, String> response = new LinkedHashMap<>();
         if (!orderService.saveOrder(orderDTO)) throw new RuntimeException("Failed to save the order");
-        response.put("message","Order saved successfully");
+        response.put("message", "Order saved successfully");
         logger.info(response.toString());
         return ResponseEntity.created(null).body(response);
     }
-
-
+    /**
+     * @return List<OrderDetailDTO>
+     */
     @GetMapping("/orderdetails")
-    public List<OrderDetailDTO> getOrderDetails(){
+    public List<OrderDetailDTO> getOrderDetails() {
         return orderService.getAllOrders();
     }
 }

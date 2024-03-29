@@ -12,13 +12,29 @@ import java.util.List;
  * @since : 0.1.0
  **/
 public interface OrderService {
+    /**
+     * @param orderDTO OrderDTO
+     * @return boolean
+     */
     boolean saveOrder(OrderDTO orderDTO);
 
+    /**
+     * @return List<OrderDetailDTO>
+     */
     List<OrderDetailDTO> getAllOrders();
 
+    /**
+     * @return List<OrderDetailProjection>
+     */
     Integer getOrderCount();
 
+    /**
+     * @return List<OrderDetailProjection>
+     */
     Integer getOrderDetailCount();
 
+    /**
+     * @return Double
+     */
     Double geyIncome();
 }

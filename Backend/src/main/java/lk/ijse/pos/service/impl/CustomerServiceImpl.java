@@ -21,23 +21,38 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepo customerRepo;
     private final ModelMapper modelMapper;
 
+    /**
+     * @param customerRepo CustomerRepo
+     * @param modelMapper ModelMapper
+     */
     public CustomerServiceImpl(CustomerRepo customerRepo, ModelMapper modelMapper) {
         this.customerRepo = customerRepo;
         this.modelMapper = modelMapper;
     }
 
+    /**
+     * @param customerDTO CustomerDTO
+     * @return boolean
+     */
     @Override
     public boolean saveCustomer(CustomerDTO customerDTO) {
         Customer save = customerRepo.save(modelMapper.map(customerDTO, Customer.class));
         return save != null;
     }
 
+    /**
+     * @return List
+     */
     @Override
     public List getAllCustomers() {
         List<Customer> all = customerRepo.findAll();
         return modelMapper.map(all, List.class);
     }
 
+    /**
+     * @param id String
+     * @return boolean
+     */
     @Override
     public boolean deleteCustomer(String id) {
         if (!customerRepo.existsById(id)) {
@@ -47,6 +62,10 @@ public class CustomerServiceImpl implements CustomerService {
         return true;
     }
 
+    /**
+     * @param customerDTO CustomerDTO
+     * @return boolean
+     */
     @Override
     public boolean updateCustomer(CustomerDTO customerDTO) {
         if (!customerRepo.existsById(customerDTO.getCusId())) {
@@ -56,11 +75,18 @@ public class CustomerServiceImpl implements CustomerService {
         return save != null;
     }
 
+    /**
+     * @return int
+     */
     @Override
     public int getCustomerCount() {
         return customerRepo.getCustomerCount();
     }
 
+    /**
+     * @param customerId String
+     * @return CustomerDTO
+     */
     @Override
     public CustomerDTO getCustomer(String customerId) {
         Customer referenceById = customerRepo.findById(customerId).get();

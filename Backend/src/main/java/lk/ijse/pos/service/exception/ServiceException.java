@@ -7,6 +7,9 @@ package lk.ijse.pos.service.exception;
  **/
 public class ServiceException extends RuntimeException {
 
+    /**
+     * @param message : message
+     */
     public ServiceException(String message) {
         super(message);
     }

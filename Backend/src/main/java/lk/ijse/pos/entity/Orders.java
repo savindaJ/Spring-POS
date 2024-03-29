@@ -34,6 +34,11 @@ public class Orders {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "orders")
     private List<OrderDetail> orderDetails = new ArrayList<>();
 
+    /**
+     * @param orderId Order ID
+     * @param customer Customer
+     * @param orderDetails List of Order Details
+     */
     public Orders(String orderId, Customer customer, List<OrderDetail> orderDetails) {
         this.orderID = orderId;
         this.customer = customer;

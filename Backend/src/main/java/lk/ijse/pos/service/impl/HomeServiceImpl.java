@@ -25,21 +25,28 @@ public class HomeServiceImpl implements HomeService {
 
     private final OrderService orderService;
 
+    /**
+     * @param customerService CustomerService
+     * @param itemService     ItemService
+     * @param orderService    OrderService
+     */
     public HomeServiceImpl(CustomerService customerService, ItemService itemService, OrderService orderService) {
         this.customerService = customerService;
         this.itemService = itemService;
         this.orderService = orderService;
     }
 
-
+    /**
+     * @return Map<String, Number>
+     */
     @Override
-    public Map<String,Number> getStatus() {
+    public Map<String, Number> getStatus() {
         HashMap<String, Number> list = new HashMap<>();
-        list.put("customerCount",customerService.getCustomerCount());
-        list.put("itemCount",itemService.getItemCount());
-        list.put("orderCount",orderService.getOrderCount());
-        list.put("orderDetailCount",orderService.getOrderDetailCount());
-        list.put("income",orderService.geyIncome());
+        list.put("customerCount", customerService.getCustomerCount());
+        list.put("itemCount", itemService.getItemCount());
+        list.put("orderCount", orderService.getOrderCount());
+        list.put("orderDetailCount", orderService.getOrderDetailCount());
+        list.put("income", orderService.geyIncome());
         return list;
     }
 }

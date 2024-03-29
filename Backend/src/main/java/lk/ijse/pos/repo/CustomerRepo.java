@@ -11,6 +11,9 @@ import org.springframework.data.jpa.repository.Query;
  **/
 public interface CustomerRepo extends JpaRepository<Customer,String> {
 
+    /**
+     * @return Integer
+     */
     @Query(value = "SELECT COUNT(*) FROM Customer", nativeQuery = true)
     Integer getCustomerCount();
 }

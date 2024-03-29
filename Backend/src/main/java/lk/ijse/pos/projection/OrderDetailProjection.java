@@ -1,11 +1,5 @@
 package lk.ijse.pos.projection;
 
-import jakarta.persistence.ColumnResult;
-import jakarta.persistence.ConstructorResult;
-import jakarta.persistence.EntityResult;
-import jakarta.persistence.SqlResultSetMapping;
-import lk.ijse.pos.projection.impl.OrderDetailProjectionImpl;
-
 import java.sql.Timestamp;
 
 /**
@@ -14,14 +8,29 @@ import java.sql.Timestamp;
  * @since : 0.1.0
  **/
 public interface OrderDetailProjection {
+    /**
+     * @return orderId
+     */
     String getOrderId();
 
+    /**
+     * @return customerId
+     */
     String getCustomerId();
 
+    /**
+     * @return itemCode
+     */
     String getItemCode();
 
+    /**
+     * @return orderQuantity
+     */
     Integer getOrderQuantity();
 
+    /**
+     * @return orderDate
+     */
     Timestamp getOrderDate();
 
 }

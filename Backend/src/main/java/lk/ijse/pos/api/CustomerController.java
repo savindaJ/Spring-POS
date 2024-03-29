@@ -22,15 +22,31 @@ import java.util.logging.Logger;
 @CrossOrigin(origins = "*")
 @RequestMapping("/customer")
 public class CustomerController {
+    /**
+     * Logger
+     */
     private final Logger logger = Logger.getLogger(this.getClass().getName());
     private final CustomerService customerService;
+
+    /**
+     * @param customerService CustomerService
+     */
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
+
+    /**
+     * @return List<CustomerDTO>
+     */
     @GetMapping
     public List<CustomerDTO> getAllCustomers(){
         return customerService.getAllCustomers();
     }
+
+    /**
+     * @param customerDTO CustomerDTO
+     * @return ResponseEntity<Map < String, String>>
+     */
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String,String>> saveCustomer(@RequestBody @Valid CustomerDTO customerDTO){
         customerDTO.setCusId(Generator.generateCustomerID());
@@ -40,6 +56,11 @@ public class CustomerController {
         logger.info(response.toString());
         return ResponseEntity.created(null).body(response);
     }
+
+    /**
+     * @param id String
+     * @return ResponseEntity<Map < String, String>>
+     */
     @DeleteMapping
     public ResponseEntity<Map<String,String>> deleteCustomer(@RequestParam("id") String id){
         Map<String,String> response = new LinkedHashMap<>();
@@ -48,6 +69,11 @@ public class CustomerController {
         logger.info(response.toString());
         return ResponseEntity.ok(response);
     }
+
+    /**
+     * @param customerDTO CustomerDTO
+     * @return ResponseEntity<Map < String, String>>
+     */
     @PutMapping
     public ResponseEntity<Map<String,String>> updateCustomer(@RequestBody @Valid CustomerDTO customerDTO){
         Map<String,String> response = new LinkedHashMap<>();

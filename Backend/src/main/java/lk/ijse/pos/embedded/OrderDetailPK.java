@@ -17,6 +17,9 @@ public class OrderDetailPK implements Serializable {
     @Column(name = "item_code", length = 50)
     private String itemId;
 
+    /**
+     * No argument constructor
+     */
     public OrderDetailPK() {
 
     }

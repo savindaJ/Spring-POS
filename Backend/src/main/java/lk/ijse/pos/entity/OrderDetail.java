@@ -33,6 +33,10 @@ public class OrderDetail {
 
     }
 
+    /**
+     * @param orderDetailPK OrderDetailPK
+     * @param quantity Integer
+     */
     public OrderDetail(OrderDetailPK orderDetailPK, Integer quantity) {
         this.orderDetailPK = orderDetailPK;
         this.qty = quantity;

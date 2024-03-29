@@ -23,12 +23,18 @@ public class HomeController {
 
     private final HomeService homeService;
 
+    /**
+     * @param homeService HomeService
+     */
     public HomeController(HomeService homeService) {
         this.homeService = homeService;
     }
 
+    /**
+     * @return ResponseEntity<Map<String,Number>>
+     */
     @GetMapping
-    public ResponseEntity<Map<String,Number>> home(){
+    public ResponseEntity<Map<String,Number>> getStatus(){
         return ResponseEntity.ok(homeService.getStatus());
     }
 }

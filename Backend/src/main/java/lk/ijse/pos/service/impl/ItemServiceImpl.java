@@ -22,23 +22,38 @@ public class ItemServiceImpl implements ItemService {
 
     private final ModelMapper modelMapper;
 
+    /**
+     * @param itemRepo    ItemRepo
+     * @param modelMapper ModelMapper
+     */
     public ItemServiceImpl(ItemRepo itemRepo, ModelMapper modelMapper) {
         this.itemRepo = itemRepo;
         this.modelMapper = modelMapper;
     }
 
+    /**
+     * @param itemDTO ItemDTO
+     * @return boolean
+     */
     @Override
     public boolean saveItem(ItemDTO itemDTO) {
         Item save = itemRepo.save(modelMapper.map(itemDTO, Item.class));
         return save != null;
     }
 
+    /**
+     * @return List<ItemDTO>
+     */
     @Override
     public List<ItemDTO> getAllItems() {
         List<Item> all = itemRepo.findAll();
         return modelMapper.map(all, List.class);
     }
 
+    /**
+     * @param itemCode String
+     * @return boolean
+     */
     @Override
     public boolean deleteItem(String itemCode) {
         if (!itemRepo.existsById(itemCode)) throw new ItemNotFoundException("Item not found");
@@ -46,6 +61,10 @@ public class ItemServiceImpl implements ItemService {
         return true;
     }
 
+    /**
+     * @param itemDTO ItemDTO
+     * @return boolean
+     */
     @Override
     public boolean updateItem(ItemDTO itemDTO) {
         if (!itemRepo.existsById(itemDTO.getItemCode())) throw new ItemNotFoundException("Item not found");
@@ -53,11 +72,18 @@ public class ItemServiceImpl implements ItemService {
         return save != null;
     }
 
+    /**
+     * @return int
+     */
     @Override
     public int getItemCount() {
-       return itemRepo.getItemCount();
+        return itemRepo.getItemCount();
     }
 
+    /**
+     * @param itemCode String
+     * @return Item
+     */
     @Override
     public Item getItem(String itemCode) {
         return itemRepo.findById(itemCode).get();

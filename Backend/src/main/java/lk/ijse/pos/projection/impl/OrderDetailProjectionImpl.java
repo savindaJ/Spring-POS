@@ -1,8 +1,5 @@
 package lk.ijse.pos.projection.impl;
 
-import jakarta.persistence.ColumnResult;
-import jakarta.persistence.ConstructorResult;
-import jakarta.persistence.SqlResultSetMapping;
 import lk.ijse.pos.projection.OrderDetailProjection;
 import lombok.AllArgsConstructor;
 import lombok.Data;

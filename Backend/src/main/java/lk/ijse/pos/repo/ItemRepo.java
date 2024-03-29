@@ -11,6 +11,9 @@ import org.springframework.data.jpa.repository.Query;
  **/
 public interface ItemRepo extends JpaRepository<Item,String> {
 
+    /**
+     * @return : Integer
+     */
     @Query(value = "SELECT COUNT(*) FROM Item", nativeQuery = true)
     Integer getItemCount();
 }

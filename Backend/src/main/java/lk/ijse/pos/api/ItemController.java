@@ -22,14 +22,28 @@ import java.util.logging.Logger;
 @RequestMapping("/item")
 public class ItemController {
     private final ItemService itemService;
+
     private final Logger logger = Logger.getLogger(this.getClass().getName());
+
+    /**
+     * @param itemService ItemService
+     */
     public ItemController(ItemService itemService) {
         this.itemService = itemService;
     }
+
+    /**
+     * @return List<ItemDTO>
+     */
     @GetMapping
     public List<ItemDTO> getAll(){
         return itemService.getAllItems();
     }
+
+    /**
+     * @param itemDTO ItemDTO
+     * @return ResponseEntity<?>
+     */
     @PostMapping
     public ResponseEntity<?> saveItem(@RequestBody @Valid ItemDTO itemDTO) {
         itemDTO.setItemCode(Generator.generateItemID());
@@ -39,6 +53,11 @@ public class ItemController {
         logger.info(response.toString());
         return ResponseEntity.created(null).body(response);
     }
+
+    /**
+     * @param itemCode String
+     * @return ResponseEntity<?>
+     */
     @DeleteMapping
     public ResponseEntity<?> deleteItem(@RequestParam("itemCode") String itemCode) {
         if (!itemService.deleteItem(itemCode)) throw new RuntimeException("Failed to delete the item");
@@ -47,6 +66,11 @@ public class ItemController {
         logger.info(response.toString());
         return ResponseEntity.ok(response);
     }
+
+    /**
+     * @param itemDTO ItemDTO
+     * @return ResponseEntity<?>
+     */
     @PutMapping
     public ResponseEntity<?> updateItem(@RequestBody @Valid ItemDTO itemDTO) {
         if (!itemService.updateItem(itemDTO)) throw new RuntimeException("Failed to update the item");

@@ -41,6 +41,9 @@ public class JPAConfig {
     private String driver;
 
 
+    /**
+     * @return DataSource
+     */
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource source = new DriverManagerDataSource();
@@ -51,6 +54,9 @@ public class JPAConfig {
         return source;
     }
 
+    /**
+     * @return LocalContainerEntityManagerFactoryBean
+     */
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 
@@ -67,6 +73,10 @@ public class JPAConfig {
         return factory;
     }
 
+    /**
+     * @param entityManagerFactory EntityManagerFactory
+     * @return PlatformTransactionManager
+     */
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 
@@ -75,6 +85,9 @@ public class JPAConfig {
         return txManager;
     }
 
+    /**
+     * @return ModelMapper
+     */
     @Bean
     public ModelMapper modelMapper(){
         return new ModelMapper();

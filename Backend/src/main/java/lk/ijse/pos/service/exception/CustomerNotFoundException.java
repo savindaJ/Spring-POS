@@ -6,6 +6,9 @@ package lk.ijse.pos.service.exception;
  * @since : 0.1.0
  **/
 public class CustomerNotFoundException extends ServiceException {
+    /**
+     * @param message : message
+     */
     public CustomerNotFoundException(String message) {
         super(message);
     }

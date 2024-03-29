@@ -41,6 +41,12 @@ public class OrderServiceImpl implements OrderService {
 
     private final OrderRepo orderRepo;
 
+    /**
+     * @param customerService CustomerService
+     * @param itemService     ItemService
+     * @param modelMapper     ModelMapper
+     * @param orderRepo       OrderRepo
+     */
     public OrderServiceImpl(CustomerService customerService, ItemService itemService, ModelMapper modelMapper, OrderRepo orderRepo) {
         this.customerService = customerService;
         this.itemService = itemService;
@@ -48,6 +54,10 @@ public class OrderServiceImpl implements OrderService {
         this.orderRepo = orderRepo;
     }
 
+    /**
+     * @param orderDTO OrderDTO
+     * @return boolean
+     */
     @Override
     @Transactional
     public boolean saveOrder(OrderDTO orderDTO) {
@@ -63,6 +73,9 @@ public class OrderServiceImpl implements OrderService {
         return save != null;
     }
 
+    /**
+     * @return List<OrderDetailDTO>
+     */
     @Override
     public List<OrderDetailDTO> getAllOrders() {
         List<OrderDetailDTO> orderDetailDTOS = new ArrayList<>();
@@ -76,16 +89,25 @@ public class OrderServiceImpl implements OrderService {
         return orderDetailDTOS;
     }
 
+    /**
+     * @return Integer
+     */
     @Override
     public Integer getOrderCount() {
         return orderRepo.getOrderCount();
     }
 
+    /**
+     * @return Integer
+     */
     @Override
     public Integer getOrderDetailCount() {
         return orderRepo.orderDetailCount();
     }
 
+    /**
+     * @return Double
+     */
     @Override
     public Double geyIncome() {
         return orderRepo.getIncome();
