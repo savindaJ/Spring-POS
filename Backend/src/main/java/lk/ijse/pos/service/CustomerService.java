@@ -18,4 +18,8 @@ public interface CustomerService {
     boolean deleteCustomer(String id);
 
     boolean updateCustomer(CustomerDTO customerDTO);
+
+    int getCustomerCount();
+
+    CustomerDTO getCustomer(String customerId);
 }

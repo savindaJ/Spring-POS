@@ -40,8 +40,8 @@ $('#btnPlaceOrder').on('click', function () {
         let item = {
             itemCode: $(child[0]).text(),
             description: $(child[1]).text(),
-            price: $(child[4]).text(),
-            quantity: $(child[3]).text()
+            unitPrice: $(child[4]).text(),
+            qty: $(child[3]).text()
         }
         list.push(item);
     }
@@ -55,7 +55,7 @@ $('#btnPlaceOrder').on('click', function () {
     $.ajax({
         method: 'post',
         url: baseUrl + 'order',
-        contentType: 'json',
+        contentType: 'application/json',
         data: JSON.stringify(orderObj),
         success: function (res) {
             const Toast = Swal.mixin({
@@ -146,7 +146,7 @@ $('#selCusId').on('change', function () {
     let id = $('#selCusId').val();
     for (const cus of customers) {
         if (cus.cusId === id) {
-            $('#orderCusName').val(cus.cusName);
+            $('#orderCusName').val(cus.name);
             $('#orderCusAddres').val(cus.address);
             $('#orderCusTp').val(cus.salary);
         }
@@ -201,17 +201,19 @@ function loadCusIds(ids) {
 }
 
 function getNextOrderId() {
+
     $.ajax({
-        url: baseUrl + 'order',
+        url: baseUrl + 'order/nextId',
         type: 'get',
-        dataType: 'json',
         success: function (res) {
-            $("#txtOrderId").val(res.message);
+            console.log(res)
+            $("#txtOrderId").val(res);
             $('#txtOrderId').css("border", "2px solid green");
             $('#selCusId').prop('disabled', false);
             $('#txtOrderId').prop('disabled', true);
         },
         error: function (err) {
+            console.log(err);
             let responseJson = JSON.parse(err.responseText);
             Swal.fire({
                 position: "top-end",

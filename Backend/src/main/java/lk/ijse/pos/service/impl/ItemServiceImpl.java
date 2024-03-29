@@ -52,4 +52,14 @@ public class ItemServiceImpl implements ItemService {
         Item save = itemRepo.save(modelMapper.map(itemDTO, Item.class));
         return save != null;
     }
+
+    @Override
+    public int getItemCount() {
+       return itemRepo.getItemCount();
+    }
+
+    @Override
+    public Item getItem(String itemCode) {
+        return itemRepo.findById(itemCode).get();
+    }
 }

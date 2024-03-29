@@ -1,4 +1,4 @@
-const orderId_regex = /^(ORD-)[0-9]{3}$/;
+const orderId_regex = /^ORD\-[0-9a-f]{8}$/;
 
 $('#btnAddOrder').prop("disabled", true);
 

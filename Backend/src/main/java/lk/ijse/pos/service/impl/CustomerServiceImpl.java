@@ -55,4 +55,16 @@ public class CustomerServiceImpl implements CustomerService {
         Customer save = customerRepo.save(modelMapper.map(customerDTO, Customer.class));
         return save != null;
     }
+
+    @Override
+    public int getCustomerCount() {
+        return customerRepo.getCustomerCount();
+    }
+
+    @Override
+    public CustomerDTO getCustomer(String customerId) {
+        Customer referenceById = customerRepo.findById(customerId).get();
+        System.out.println(referenceById);
+        return modelMapper.map(referenceById, CustomerDTO.class);
+    }
 }

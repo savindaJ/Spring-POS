@@ -1,6 +1,7 @@
 package lk.ijse.pos.service;
 
 import lk.ijse.pos.dto.ItemDTO;
+import lk.ijse.pos.entity.Item;
 
 import java.util.List;
 
@@ -17,4 +18,8 @@ public interface ItemService {
     boolean deleteItem(String itemCode);
 
     boolean updateItem(ItemDTO itemDTO);
+
+    int getItemCount();
+
+    Item getItem(String itemCode);
 }
