@@ -7,6 +7,8 @@ import lk.ijse.pos.service.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author : savindaJ
  * @date : 2024-03-28
@@ -27,5 +29,11 @@ public class CustomerServiceImpl implements CustomerService {
     public boolean saveCustomer(CustomerDTO customerDTO) {
         Customer save = customerRepo.save(modelMapper.map(customerDTO, Customer.class));
         return save != null;
+    }
+
+    @Override
+    public List getAllCustomers() {
+        List<Customer> all = customerRepo.findAll();
+        return modelMapper.map(all, List.class);
     }
 }

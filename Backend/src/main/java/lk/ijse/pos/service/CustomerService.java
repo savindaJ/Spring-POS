@@ -3,6 +3,8 @@ package lk.ijse.pos.service;
 import lk.ijse.pos.dto.CustomerDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author : savindaJ
  * @date : 2024-03-28
@@ -10,4 +12,6 @@ import org.springframework.stereotype.Service;
  **/
 public interface CustomerService {
     boolean saveCustomer(CustomerDTO customerDTO);
+
+    List<CustomerDTO> getAllCustomers();
 }
