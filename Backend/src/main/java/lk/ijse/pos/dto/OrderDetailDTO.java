@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderDetailDTO {
+public class OrderDetailDTO implements SuperDTO{
     private String orderId;
     private String customerId;
     private String itemCode;

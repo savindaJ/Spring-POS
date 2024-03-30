@@ -9,14 +9,14 @@ $('#btn-signUp').on('click', function () {
     let pw = $('#txt-pw').val();
 
     const user = {
-        email: email,
+        gmail: email,
         firstName: fname,
         lastName: lname,
         password: pw
     }
 
     $.ajax({
-        url: baseUrl + 'user',
+        url: baseUrl + 'auth/signup',
         type: 'post',
         contentType: 'application/json',
         data: JSON.stringify(user),
@@ -38,26 +38,7 @@ $('#btn-signUp').on('click', function () {
                     clearInterval(timerInterval);
                 }
             }).then((result) => {
-                /* Read more about handling dismissals below */
-                if (result.dismiss === Swal.DismissReason.timer && res.message === 'success') {
                     window.location.href = "../index.html";
-                } else {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 2000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.onmouseenter = Swal.stopTimer;
-                            toast.onmouseleave = Swal.resumeTimer;
-                        }
-                    });
-                    Toast.fire({
-                        icon: "error",
-                        title: res.message
-                    });
-                }
             });
         },
         error: function (err) {

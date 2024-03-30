@@ -3,15 +3,17 @@ $('#btn-sign-in').on('click', function () {
     let pw = $('#txt-pw').val();
 
     const myUser = {
-        email: txtEmail,
+        gmail: txtEmail,
         password: pw
     }
 
+    console.log(myUser)
+
     $.ajax({
-        url: baseUrl + 'user',
-        type: 'get',
-        dataType: 'json',
-        data: myUser,
+        url: baseUrl + 'auth/login',
+        type: 'post',
+        contentType: 'application/json',
+        data: JSON.stringify(myUser),
         success: function (res) {
             let timerInterval;
             Swal.fire({
@@ -30,12 +32,7 @@ $('#btn-sign-in').on('click', function () {
                     clearInterval(timerInterval);
                 }
             }).then((result) => {
-                /* Read more about handling dismissals below */
-                if (result.dismiss === Swal.DismissReason.timer && res.message === 'success') {
                     window.location.href = "pages/main.html";
-                } else {
-                    alert('invalid !');
-                }
             });
         },
         error: function (err) {
@@ -52,7 +49,7 @@ $('#btn-sign-in').on('click', function () {
             });
             Toast.fire({
                 icon: "error",
-                title: 'invalid username or password !'
+                title: JSON.parse(err.responseText).message
             });
         }
     });
