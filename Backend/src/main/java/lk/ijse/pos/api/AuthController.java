@@ -22,10 +22,17 @@ import java.util.Map;
 public class AuthController {
     private final UserService userService;
 
+    /**
+     * @param userService : UserService
+     */
     public AuthController(UserService userService) {
         this.userService = userService;
     }
 
+    /**
+     * @param user : UserDTO
+     * @return : ResponseEntity<String>
+     */
     @PostMapping("/signup")
     public ResponseEntity<String> signUp(@RequestBody @Valid UserDTO user) {
         System.out.println(user);
@@ -37,6 +44,10 @@ public class AuthController {
         }
     }
 
+    /**
+     * @param loginRequest : LoginRequest
+     * @return : ResponseEntity<Map<String, String>>
+     */
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody @Valid LoginRequest loginRequest) {
         boolean user = userService.findUser(loginRequest);

@@ -20,15 +20,28 @@ public class UserServiceImpl implements UserService {
 
     private final ModelMapper modelMapper;
 
+    /**
+     * @param userRepository : UserRepo
+     * @param modelMapper : ModelMapper
+     */
     public UserServiceImpl(UserRepo userRepository, ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
     }
+
+    /**
+     * @param userDTO : UserDTO
+     * @return : boolean
+     */
     @Override
     public boolean signUp(UserDTO userDTO) {
         return userRepository.save(modelMapper.map(userDTO, User.class)) != null;
     }
 
+    /**
+     * @param request : LoginRequest
+     * @return : boolean
+     */
     @Override
     public boolean findUser(LoginRequest request) {
         User user = userRepository.findByGmail(request.getGmail());

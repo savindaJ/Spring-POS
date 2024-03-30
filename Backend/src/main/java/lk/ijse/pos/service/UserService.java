@@ -9,6 +9,15 @@ import lk.ijse.pos.dto.UserDTO;
  * @since : 0.1.0
  **/
 public interface UserService {
+    /**
+     * @param userDTO : UserDTO
+     * @return : boolean
+     */
     boolean signUp(UserDTO userDTO);
+
+    /**
+     * @param request : LoginRequest
+     * @return : boolean
+     */
     boolean findUser(LoginRequest request);
 }

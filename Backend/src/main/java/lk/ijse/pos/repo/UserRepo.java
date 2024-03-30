@@ -9,5 +9,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @since : 0.1.0
  **/
 public interface UserRepo extends JpaRepository<User, String>{
+    /**
+     * @param gmail : String
+     * @return : User
+     */
     User findByGmail(String gmail);
 }
