@@ -3,6 +3,7 @@ package lk.ijse.pos.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class Customer {
     @Column(name = "customer_id", length = 50)
     private String cusId;
     @Column(name = "customer_name", length = 50)
+    @NotNull(message = "Customer name is required")
     private String name;
     @Column(name = "customer_address", length = 50)
     private String address;
