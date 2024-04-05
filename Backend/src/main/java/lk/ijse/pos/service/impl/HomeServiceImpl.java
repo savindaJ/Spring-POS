@@ -6,9 +6,7 @@ import lk.ijse.pos.service.ItemService;
 import lk.ijse.pos.service.OrderService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,7 +44,7 @@ public class HomeServiceImpl implements HomeService {
         list.put("itemCount", itemService.getItemCount());
         list.put("orderCount", orderService.getOrderCount());
         list.put("orderDetailCount", orderService.getOrderDetailCount());
-        list.put("income", orderService.geyIncome());
+        list.put("income", orderService.getIncome());
         return list;
     }
 }

@@ -109,7 +109,7 @@ public class OrderServiceImpl implements OrderService {
      * @return Double
      */
     @Override
-    public Double geyIncome() {
+    public Double getIncome() {
         return orderRepo.getIncome();
     }
 }

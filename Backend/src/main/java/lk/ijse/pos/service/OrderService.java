@@ -2,7 +2,6 @@ package lk.ijse.pos.service;
 
 import lk.ijse.pos.dto.OrderDTO;
 import lk.ijse.pos.dto.OrderDetailDTO;
-import lk.ijse.pos.projection.OrderDetailProjection;
 
 import java.util.List;
 
@@ -36,5 +35,5 @@ public interface OrderService {
     /**
      * @return Double
      */
-    Double geyIncome();
+    Double getIncome();
 }
